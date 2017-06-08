@@ -67,8 +67,8 @@ class IndexCommand extends ContainerAwareCommand
             } else {
                 $output->writeln('<fg=red>[IML] Empty Index.</>');
             }
-        } catch (\Exception $e){
-            $io->error('[IML] Cache index not available. - ERROR: ' . $e->getMessage() );
+        } catch (\Exception $e) {
+            $io->error('[IML] Cache index not available. - ERROR: ' . $e->getMessage());
         }
     }
 }

@@ -64,9 +64,8 @@ class StatisticsCommand extends ContainerAwareCommand
             }
 
             $table->render();
-
-        } catch (\Exception $e){
-            $io->error('[IML] Cache statistics not available. - ERROR: ' . $e->getMessage() );
+        } catch (\Exception $e) {
+            $io->error('[IML] Cache statistics not available. - ERROR: ' . $e->getMessage());
         }
     }
 }

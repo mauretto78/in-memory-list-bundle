@@ -39,8 +39,8 @@ class FlushCommand extends ContainerAwareCommand
             $cache->flush();
 
             $io->success('[IML] Cache was successful flushed.');
-        } catch (\Exception $e){
-            $io->error('[IML] Cache not cleared. - ERROR: ' . $e->getMessage() );
+        } catch (\Exception $e) {
+            $io->error('[IML] Cache not cleared. - ERROR: ' . $e->getMessage());
         }
     }
 }
