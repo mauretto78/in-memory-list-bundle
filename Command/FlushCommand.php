@@ -35,7 +35,7 @@ class FlushCommand extends ContainerAwareCommand
 
         try {
             /** @var Client $cache */
-            $cache = $this->getContainer()->get('in-memory-list');
+            $cache = $this->getContainer()->get('in_memory_list');
             $cache->flush();
 
             $io->success('[IML] Cache was successful flushed.');

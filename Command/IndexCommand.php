@@ -34,10 +34,11 @@ class IndexCommand extends ContainerAwareCommand
 
         try {
             /** @var Client $cache */
-            $cache = $this->getContainer()->get('in-memory-list');
+            $cache = $this->getContainer()->get('in_memory_list');
             $index = $cache->getIndex(null, true);
 
             if ($index and count($index)) {
+                ksort($index);
                 $table = new Table($output);
                 $table->setHeaders(['#', 'List', 'Created on', 'Chunks', 'Chunk size', 'Ttl', 'Items']);
 

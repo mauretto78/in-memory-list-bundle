@@ -34,7 +34,7 @@ class StatisticsCommand extends ContainerAwareCommand
 
         try {
             /** @var Client $cache */
-            $cache = $this->getContainer()->get('in-memory-list');
+            $cache = $this->getContainer()->get('in_memory_list');
             $statistics = $cache->getStatistics();
 
             $table = new Table($output);
