@@ -1,6 +1,8 @@
 # In-Memory List Bundle #
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0076ba5bfafe4cee87f07b08acbd0099)](https://www.codacy.com/app/mauretto78/in-memory-list-bundle?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mauretto78/in-memory-list-bundle&amp;utm_campaign=Badge_Grade)
+[![license](https://img.shields.io/github/license/mauretto78/in-memory-list-bundle.svg)]()
+[![Packagist](https://img.shields.io/packagist/v/mauretto78/in-memory-list-bundle.svg)]()
 
 This is the official Symfony bundle for [In-Memory List package](https://github.com/mauretto78/in-memory-list).
 
@@ -57,7 +59,6 @@ public function indexAction(Request $request)
             'body' => "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
         ],
     ]);
-
 
     /** @var Cache $cache */
     $cache = $this->container->get('in_memory_list');
