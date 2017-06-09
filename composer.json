@@ -15,6 +15,7 @@
     ],
     "homepage": "https://github.com/mauretto78/in-memory-list-bundle",
     "license": "MIT",
+    "minimum-stability": "stable",
     "support": {
         "issues": "https://github.com/mauretto78/in-memory-list/issues"
     },
