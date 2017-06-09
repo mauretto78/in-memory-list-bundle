@@ -25,7 +25,7 @@ class InMemoryListExtension extends Extension
 
         // Includes services_dev.yml only
         // if we are in debug mode
-        if(in_array($container->getParameter('kernel.environment'), ['dev', 'test'])){
+        if (in_array($container->getParameter('kernel.environment'), ['dev', 'test'])) {
             $loader->load('services_dev.yml');
         }
 

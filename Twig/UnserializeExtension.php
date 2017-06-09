@@ -12,14 +12,14 @@ namespace InMemoryList\Bundle\Twig;
 
 class UnserializeExtension extends \Twig_Extension
 {
-    public function getFilters()
+    public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFilter('unserialize', array($this, 'unserializeFilter')),
+            new \Twig_SimpleFunction('item', [$this, 'unserializeFunction']),
         );
     }
 
-    public function unserializeFilter($string)
+    public function unserializeFunction($string)
     {
         return unserialize($string);
     }

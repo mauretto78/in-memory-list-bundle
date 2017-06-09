@@ -71,6 +71,18 @@ public function indexAction(Request $request)
     ]);
 }
 ```
+
+To loop data in your twig files you can use `item` function;
+
+```twig
+{% for list in cachedList %}
+    <li>{{ item(list).userId }}</li>
+    <li>{{ item(list).id }}</li>
+    <li>{{ item(list).title }}</li>
+    <li>{{ item(list).body }}</li>
+{% endfor %}
+```
+
 ## Support ##
 
 If you found an issue or had an idea please refer [to this section](https://github.com/mauretto78/in-memory-list-bundle/issues).
