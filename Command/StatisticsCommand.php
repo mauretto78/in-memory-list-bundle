@@ -30,7 +30,7 @@ class StatisticsCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
+        $symfonyOutput = new SymfonyStyle($input, $output);
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
@@ -64,7 +64,7 @@ class StatisticsCommand extends ContainerAwareCommand
 
             $table->render();
         } catch (\Exception $e) {
-            $io->error('[IML] Cache statistics not available. - ERROR: ' . $e->getMessage());
+            $symfonyOutput->error('[IML] Cache statistics not available. - ERROR: ' . $e->getMessage());
         }
     }
 }

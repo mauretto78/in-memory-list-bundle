@@ -30,7 +30,7 @@ class IndexCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
+        $symfonyOutput = new SymfonyStyle($input, $output);
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
@@ -68,7 +68,7 @@ class IndexCommand extends ContainerAwareCommand
                 $output->writeln('<fg=red>[IML] Empty Index.</>');
             }
         } catch (\Exception $e) {
-            $io->error('[IML] Cache index not available. - ERROR: ' . $e->getMessage());
+            $symfonyOutput->error('[IML] Cache index not available. - ERROR: ' . $e->getMessage());
         }
     }
 }

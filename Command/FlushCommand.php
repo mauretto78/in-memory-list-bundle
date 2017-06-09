@@ -30,16 +30,16 @@ class FlushCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
+        $symfonyOutput = new SymfonyStyle($input, $output);
         $output->writeln("<fg=yellow>Clearing cache operation can take a while, please be patient...</>");
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
             $cache->getClient()->flush();
 
-            $io->success('[IML] Cache was successful flushed.');
+            $symfonyOutput->success('[IML] Cache was successful flushed.');
         } catch (\Exception $e) {
-            $io->error('[IML] Cache not cleared. - ERROR: ' . $e->getMessage());
+            $symfonyOutput->error('[IML] Cache not cleared. - ERROR: ' . $e->getMessage());
         }
     }
 }
