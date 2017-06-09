@@ -36,9 +36,11 @@ class Configuration implements ConfigurationInterface
                 ->isRequired()
                 ->end()
             ->end()
-            ->arrayNode('parameters')
-                ->isRequired()
-                ->prototype('variable')
+            ->children()
+                ->arrayNode('parameters')
+                    ->isRequired()
+                    ->prototype('variable')
+                ->end()
             ->end()
         ;
 

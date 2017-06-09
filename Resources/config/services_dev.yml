@@ -11,5 +11,5 @@ services:
             -
                 name:     data_collector
                 template: '@InMemoryList/data_collector/template.html.twig'
-                id:       'in_memory_list'
-                priority: 300
+                id:       'in_memory_list_data_collector'
+                priority: 30

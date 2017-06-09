@@ -33,9 +33,8 @@ class IndexCommand extends ContainerAwareCommand
         $io = new SymfonyStyle($input, $output);
 
         try {
-            /** @var Client $cache */
             $cache = $this->getContainer()->get('in_memory_list');
-            $index = $cache->getIndex(null, true);
+            $index = $cache->getClient()->getIndex(null, true);
 
             if ($index and count($index)) {
                 ksort($index);
@@ -55,9 +54,9 @@ class IndexCommand extends ContainerAwareCommand
                             $counter+1,
                             '<fg=yellow>'.$listUuid.'</>',
                             $created_on->format('Y-m-d H:i:s'),
-                            $cache->getNumberOfChunks($listUuid),
-                            $cache->getChunkSize($listUuid),
-                            $cache->getTtl($listUuid),
+                            $cache->getClient()->getNumberOfChunks($listUuid),
+                            $cache->getClient()->getChunkSize($listUuid),
+                            $cache->getClient()->getTtl($listUuid),
                             $item['size'],
                         ]
                     );

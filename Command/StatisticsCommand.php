@@ -33,9 +33,8 @@ class StatisticsCommand extends ContainerAwareCommand
         $io = new SymfonyStyle($input, $output);
 
         try {
-            /** @var Client $cache */
             $cache = $this->getContainer()->get('in_memory_list');
-            $statistics = $cache->getStatistics();
+            $statistics = $cache->getClient()->getStatistics();
 
             $table = new Table($output);
             $table->setHeaders(['Key', 'Value']);
