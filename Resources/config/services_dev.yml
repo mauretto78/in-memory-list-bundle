@@ -1,0 +1,15 @@
+parameters:
+    in_memory_list.data_collector.class: InMemoryList\Bundle\DataCollector\CacheCollector
+
+services:
+    in_memory_list.request_collector:
+        class: "%in_memory_list.data_collector.class%"
+        arguments:
+            - "@in_memory_list"
+        public: false
+        tags:
+            -
+                name:     data_collector
+                template: '@InMemoryList/data_collector/template.html.twig'
+                id:       'in_memory_list'
+                priority: 300

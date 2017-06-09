@@ -1,0 +1,9 @@
+parameters:
+    in_memory_list.class: InMemoryList\Bundle\Service\Cache
+    
+services:
+    in_memory_list:
+        class: "%in_memory_list.class%"
+        arguments:
+            - "%in_memory_list%"
+            - "@?debug.stopwatch"    
