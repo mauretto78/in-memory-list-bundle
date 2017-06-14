@@ -86,7 +86,7 @@ function decrTtl(ttl, element) {
             element.innerHTML = ttl--;
 
             if(ttl <= 0){
-                showList();
+                removeElement(element);
             }
         }, 1000);
     }
