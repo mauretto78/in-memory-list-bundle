@@ -86,7 +86,7 @@ function decrTtl(ttl, element) {
             element.innerHTML = ttl--;
 
             if(ttl <= 0){
-                showList()
+                showList();
             }
         }, 1000);
     }
@@ -126,7 +126,7 @@ function showList() {
                     response += "</tr>";
                     response += "</thead>";
 
-                    for (item in list) {
+                    for (var item in list) {
                         if ({}.hasOwnProperty.call(list, item)) {
                             response += "<tr id='"+list[item]["uuid"]+"'>";
                             response += "<th class='font-normal'>"+list[item]["uuid"]+"</th>";
