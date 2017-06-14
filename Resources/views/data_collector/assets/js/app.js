@@ -1,4 +1,13 @@
-// Helper functions
+/*
+ * This file is part of the InMemoryList Bundle package.
+ *
+ * (c) Mauro Cassani<https://github.com/mauretto78>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+// Helper function: get the size of an object
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -9,7 +18,7 @@ Object.size = function(obj) {
 
 var xmlhttp = new XMLHttpRequest();
 
-// Flush cache
+// Flush entire cache
 document.getElementById("inmemory_list_flush_cache").onclick = function(e) {
     if (confirm('Are you sure you want purge the entire cache?')) {
         xmlhttp.onreadystatechange = function() {
@@ -57,7 +66,7 @@ function deleteList() {
     }
 }
 
-// Delete an DOM element
+// Delete a DOM element
 function removeElement(uuid) {
     var elem = document.getElementById(uuid);
     elem.parentNode.removeChild(elem);
@@ -70,11 +79,12 @@ function ttlCountDown() {
         var element = ttlElement[i],
             ttl = element.getAttribute("data-ttl");
 
-        showTtl(ttl, element);
+        decrTtl(ttl, element);
     }
 }
 
-function showTtl(ttl, element) {
+// Decrement Ttl
+function decrTtl(ttl, element) {
     if(ttl > 0){
         setInterval(function () {
             element.innerHTML = ttl--;
@@ -143,7 +153,7 @@ function showList() {
     xmlhttp.send();
 }
 
-//
+// Show no data
 function showNoData() {
     removeElement('inmemory_list_table');
     removeElement('inmemory_list_flush_cache');
