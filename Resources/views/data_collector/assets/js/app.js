@@ -16,6 +16,19 @@ Object.size = function(obj) {
     return size;
 };
 
+// Delete a DOM element
+function removeElement(uuid) {
+    var elem = document.getElementById(uuid);
+    elem.parentNode.removeChild(elem);
+}
+
+// Show no data
+function showNoData() {
+    removeElement('inmemory_list_table');
+    removeElement('inmemory_list_flush_cache');
+    document.getElementById("inmemory_list_show").innerHTML = '<p>No data in cache</p>';
+}
+
 var xmlhttp = new XMLHttpRequest();
 
 // Flush entire cache
@@ -66,23 +79,6 @@ function deleteList() {
     }
 }
 
-// Delete a DOM element
-function removeElement(uuid) {
-    var elem = document.getElementById(uuid);
-    elem.parentNode.removeChild(elem);
-}
-
-// Ttl countdown
-function ttlCountDown() {
-    var ttlElement = document.getElementsByClassName("ttl");
-    for (var i = 0 ; i < ttlElement.length; i++) {
-        var element = ttlElement[i],
-            ttl = element.getAttribute("data-ttl");
-
-        decrTtl(ttl, element);
-    }
-}
-
 // Decrement Ttl
 function decrTtl(ttl, element) {
     if(ttl > 0){
@@ -93,6 +89,17 @@ function decrTtl(ttl, element) {
                 showList();
             }
         }, 1000);
+    }
+}
+
+// Ttl countdown
+function ttlCountDown() {
+    var ttlElement = document.getElementsByClassName("ttl");
+    for (var i = 0 ; i < ttlElement.length; i++) {
+        var element = ttlElement[i],
+            ttl = element.getAttribute("data-ttl");
+
+        decrTtl(ttl, element);
     }
 }
 
@@ -151,13 +158,6 @@ function showList() {
 
     xmlhttp.open("GET", "/_profiler/_inmemorylist/index", true);
     xmlhttp.send();
-}
-
-// Show no data
-function showNoData() {
-    removeElement('inmemory_list_table');
-    removeElement('inmemory_list_flush_cache');
-    document.getElementById("inmemory_list_show").innerHTML = '<p>No data in cache</p>';
 }
 
 showList();
