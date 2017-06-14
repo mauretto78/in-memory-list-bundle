@@ -115,15 +115,18 @@ function showList() {
 
                     for (var item in list) {
                         if ({}.hasOwnProperty.call(list, item)) {
-                            response += "<tr id='"+list[item]["uuid"]+"'>";
-                            response += "<th class='font-normal'>"+list[item]["uuid"]+"</th>";
-                            response += "<td class='font-normal'>"+list[item]["created_on"]+"</td>";
-                            response += "<td class='font-normal'>"+list[item]["expires_on"]+"</td>";
-                            response += "<td class='font-normal ttl' data-ttl='"+list[item]["ttl"]+"'>"+list[item]["ttl"]+"</td>";
-                            response += "<td class='font-normal'>"+list[item]["size"]+"</td>";
-                            response += "<td class='font-normal'>"+list[item]["chunks"]+"</td>";
-                            response += "<td class='font-normal'>"+list[item]["chunk-size"]+"</td>";
-                            response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+list[item]["uuid"]+"'>Delete</a></td>";
+                            
+                            var listItem = list[item];
+                            
+                            response += "<tr id='"+listItem["uuid"]+"'>";
+                            response += "<th class='font-normal'>"+listItem["uuid"]+"</th>";
+                            response += "<td class='font-normal'>"+listItem["created_on"]+"</td>";
+                            response += "<td class='font-normal'>"+listItem["expires_on"]+"</td>";
+                            response += "<td class='font-normal ttl' data-ttl='"+listItem["ttl"]+"'>"+listItem["ttl"]+"</td>";
+                            response += "<td class='font-normal'>"+listItem["size"]+"</td>";
+                            response += "<td class='font-normal'>"+listItem["chunks"]+"</td>";
+                            response += "<td class='font-normal'>"+listItem["chunk-size"]+"</td>";
+                            response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+listItem["uuid"]+"'>Delete</a></td>";
                             response += "</tr>";
                         }
                     }
