@@ -98,7 +98,7 @@ you can use `item` function to get the unserialized data.
 
 You can manage cached lists through the Symfony Profiler: 
 
-![Symfony Profiler](https://github.com/mauretto78/in-memory-list-bundle/tree/master/Resources/views/data_collector/assets/img/profiler.jpg)
+![Symfony Profiler](https://github.com/mauretto78/in-memory-list-bundle/blob/master/Resources/views/data_collector/assets/img/profiler.jpg)
 
 ## Support ##
 
