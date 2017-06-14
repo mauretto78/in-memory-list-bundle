@@ -40,6 +40,7 @@ function showNoDataIfTableIsEmpty() {
     }
 }
 
+// XMLHttpRequest
 var xmlhttp = new XMLHttpRequest();
 
 // Flush entire cache
