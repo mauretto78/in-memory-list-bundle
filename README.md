@@ -35,7 +35,16 @@ Please refer to [In-Memory List page](https://github.com/mauretto78/in-memory-li
 #### Step 3: Setup your AppKernel.php by adding the InMemoryList Bundle
 
 ```php
+// ..
 $bundles[] = new InMemoryList\Bundle\InMemoryListBundle();
+```
+#### Step 4: Setup yor routing_dev.yml
+
+Add these lines at the bottom of your `routing_dev.yml` file:
+
+```yaml
+_inmemorylist:
+    resource: '@InMemoryListBundle/Resources/config/routing.yml'
 ```
 
 ## Usage Guide ##
@@ -72,7 +81,7 @@ public function indexAction(Request $request)
 }
 ```
 
-To loop data in your twig files you can use `item` function;
+Now you can loop data in your twig files:
 
 ```twig
 {% for list in cachedList %}
@@ -82,6 +91,14 @@ To loop data in your twig files you can use `item` function;
     <li>{{ item(list).body }}</li>
 {% endfor %}
 ```
+
+you can use `item` function to get the unserialized data.
+
+## Symfony Profiler ##
+
+You can manage cached lists through the Symfony Profiler: 
+
+![Symfony Profiler](https://github.com/mauretto78/in-memory-list-bundle/tree/master/Resources/views/data_collector/assets/img/profiler.jpg)
 
 ## Support ##
 

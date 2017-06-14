@@ -37,23 +37,17 @@ class CacheCollector extends DataCollector
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
         $size = 0;
-        $items = [];
 
         /** @var Client $client */
         $cacheClient = $this->cache->getClient();
-        foreach ($cacheClient->getIndex() as $key => $item) {
+        foreach ($cacheClient->getIndex(null, true) as $key => $item) {
             $data = unserialize($item);
             $size = $size + $data['size'];
-
-            $expire_date = $data['created_on']->add(new \DateInterval('PT'.$data['ttl'].'S'));
-            $data['expires_on'] = $expire_date;
-            $items[$key] = $data;
         }
 
         $this->data = [
             'bundleVersion' => InMemoryListBundle::VERSION,
             'driverUsed' => $cacheClient->getDriver(),
-            'items' => $items,
             'stats' => $cacheClient->getStatistics(),
             'size' => $size,
         ];
@@ -67,11 +61,6 @@ class CacheCollector extends DataCollector
     public function getDriver()
     {
         return $this->data['driverUsed'];
-    }
-
-    public function getItems()
-    {
-        return $this->data['items'];
     }
 
     public function getStats()

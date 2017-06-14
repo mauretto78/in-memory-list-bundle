@@ -1,0 +1,38 @@
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.loading {
+    text-align: center;
+    padding: 15px 20px;
+    color: #ddd;
+}
+
+.button {
+    font-size: 14px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.button:hover {
+    text-decoration: underline;
+}
+
+.button.danger {
+    color: #fff;
+    background-color: #B0413E;
+}
+
+.button.success {
+    color: #fff;
+    background-color: #4F805D;
+}
+
+.button.warning {
+    color: #fff;
+    background-color: #A46A1F;
+}

@@ -1,10 +1,19 @@
 {% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
 
+{% block head %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="//fontawesome.io/assets/font-awesome/css/font-awesome.css">
+    <style>
+        {{ include('@InMemoryList/data_collector/assets/css/app.css') }}
+    </style>
+{% endblock %}
+
 {% block toolbar %}
 
     {% set icon %}
         <span class="icon">{{ include('@InMemoryList/data_collector/icon.svg') }}</span>
-        <span class="sf-toolbar-value">{{ collector.items|length }}</span>
+        <span class="sf-toolbar-value">{{ collector.size }}</span>
     {% endset %}
 
     {% set text %}
@@ -13,12 +22,12 @@
             <span>v{{ collector.version }}</span>
         </div>
         <div class="sf-toolbar-info-piece">
-            <b>Cached Lists</b>
-            <span>{{ collector.items|length }}</span>
+            <b>Driver in use</b>
+            <span class="sf-toolbar-status">{{ collector.driver }}</span>
         </div>
         <div class="sf-toolbar-info-piece">
             <b>Total number of stored items</b>
-            <span>{{ collector.size }}</span>
+            <span class="sf-toolbar-status">{{ collector.size }}</span>
         </div>
     {% endset %}
 
@@ -26,71 +35,31 @@
 {% endblock %}
 
 {% block menu %}
-    <span class="label{% if collector.items|length == 0 %} disabled{% endif %}">
+    <span class="label{% if collector.size == 0 %} disabled{% endif %}">
         <span class="icon">{{ include('@InMemoryList/data_collector/icon.svg') }}</span>
         <strong>In Memory List</strong>
-        {% if collector.items|length > 0 %}
-            <span class="count">
-                <span>{{ collector.items|length }}</span>
-            </span>
-        {% endif %}
     </span>
 {% endblock %}
 
 {% block panel %}
 
     <!--
-    - Driver in use
+    - Lists stored in memory (loaded via AJAX)
     -->
-    <h2>Driver in use</h2>
-    <table class="">
-        <thead>
-        <tr>
-            <th class="key" scope="col">Key</th>
-            <th scope="col">Value</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>Driver</th>
-                <td>{{ collector.driver }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h2>
+        Lists stored in memory
+        {% if collector.size %}
+            <a href="#" id="inmemory_list_flush_cache" class="button danger pull-right">Purge Cache</a>
+        {% endif %}
+    </h2>
+    <div id="inmemory_list_show">
+        <div class="loading">
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+        </div>
+    </div>
 
     <!--
-    - Lists stored in memory
-    -->
-    <h2>Lists stored in memory <small> ({{ collector.items|length }})</small></h2>
-    <table class="">
-        <thead>
-        <tr>
-            <th class="key" scope="col">List</th>
-            <th scope="col">Created on</th>
-            <th scope="col">Expires on</th>
-            <th scope="col">Ttl</th>
-            <th scope="col">Items</th>
-            <th scope="col">Chunks</th>
-            <th scope="col">Chunk size</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for key, value in collector.items if collector.items %}
-            <tr>
-                <th>{{ key }}</th>
-                <td>{{ value['created_on']|date("F jS \\a\\t g:ia") }}</td>
-                <td>{{ value['expires_on']|date("F jS \\a\\t g:ia") }}</td>
-                <td>{{ value['ttl'] }}</td>
-                <td>{{ value['size'] }}</td>
-                <td>{{ value['chunks'] }}</td>
-                <td>{{ value['chunk-size'] }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <!--
-    - Statistics
+    - Statistics (loaded via static HTML)
     -->
     <h2> Statistics</h2>
     <table class="">
@@ -109,5 +78,9 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        {{ include('@InMemoryList/data_collector/assets/js/app.js') }}
+    </script>
 
 {% endblock %}

@@ -1,0 +1,4 @@
+inmemorylist:
+    resource: '@InMemoryListBundle/Controller/'
+    type: annotation
+    prefix: /_profiler/_inmemorylist
