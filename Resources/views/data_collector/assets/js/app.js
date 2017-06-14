@@ -79,19 +79,6 @@ function deleteList() {
     }
 }
 
-// Decrement Ttl
-function decrTtl(ttl, element) {
-    if(ttl > 0){
-        setInterval(function () {
-            element.innerHTML = ttl--;
-
-            if(ttl <= 0){
-                showList();
-            }
-        }, 1000);
-    }
-}
-
 // Ttl countdown
 function ttlCountDown() {
     var ttlElement = document.getElementsByClassName("ttl");
@@ -160,6 +147,19 @@ function showList() {
 
     xmlhttp.open("GET", "/_profiler/_inmemorylist/index", true);
     xmlhttp.send();
+}
+
+// Decrement Ttl
+function decrTtl(ttl, element) {
+    if(ttl > 0){
+        setInterval(function () {
+            element.innerHTML = ttl--;
+
+            if(ttl <= 0){
+                showList();
+            }
+        }, 1000);
+    }
 }
 
 showList();
