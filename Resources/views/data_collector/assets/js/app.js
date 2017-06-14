@@ -11,22 +11,33 @@
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
+        if (obj.hasOwnProperty(key)) {
+            size++;
+        }
     }
+
     return size;
 };
 
 // Delete a DOM element
-function removeElement(uuid) {
+function removeElementById(uuid) {
     var elem = document.getElementById(uuid);
     elem.parentNode.removeChild(elem);
 }
 
 // Show no data
 function showNoData() {
-    removeElement("inmemory_list_table");
-    removeElement("inmemory_list_flush_cache");
+    removeElementById("inmemory_list_table");
+    removeElementById("inmemory_list_flush_cache");
     document.getElementById("inmemory_list_show").innerHTML = "<p>No data in cache</p>";
+}
+
+// Show no data if table is empty
+function showNoDataIfTableIsEmpty() {
+    var rows = document.getElementById("inmemory_list_table").getElementsByTagName("tr").length;
+    if((rows -1) === 0){
+        showNoData();
+    }
 }
 
 var xmlhttp = new XMLHttpRequest();
@@ -53,19 +64,16 @@ document.getElementById("inmemory_list_flush_cache").onclick = function(e) {
 function deleteList() {
     var deleteElement = document.getElementsByClassName("inmemory_list_delete_element");
     for (var i = 0 ; i < deleteElement.length; i++) {
-        deleteElement[i].addEventListener("click" , function (e) {
+        var element = deleteElement[i];
+        element.addEventListener("click" , function (e) {
             if (confirm("Are you sure you want delete this list?")) {
                 var uuid = this.getAttribute("data-id");
 
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState === XMLHttpRequest.DONE ) {
                         if (xmlhttp.status === 204) {
-                            removeElement(uuid);
-
-                            var rows = document.getElementById("inmemory_list_table").getElementsByTagName("tr").length;
-                            if((rows -1) === 0){
-                                showNoData();
-                            }
+                            removeElementById(uuid);
+                            showNoDataIfTableIsEmpty();
                         }
                     }
                 };
@@ -77,6 +85,20 @@ function deleteList() {
             e.preventDefault();
         });
     }
+}
+
+// Decrement Ttl
+function decrTtl(ttl, element) {
+    var refreshIntervalId = setInterval(function () {
+        ttl = ttl - 1;
+        element.innerHTML = ttl;
+
+        if(ttl === 0){
+            removeElementById(element.parentElement.getAttribute("id"));
+            showNoDataIfTableIsEmpty();
+            clearInterval(refreshIntervalId);
+        }
+    }, 1000);
 }
 
 // Ttl countdown
@@ -115,9 +137,8 @@ function showList() {
 
                     for (var item in list) {
                         if ({}.hasOwnProperty.call(list, item)) {
-                            
                             var listItem = list[item];
-                            
+
                             response += "<tr id='"+listItem["uuid"]+"'>";
                             response += "<th class='font-normal'>"+listItem["uuid"]+"</th>";
                             response += "<td class='font-normal'>"+listItem["created_on"]+"</td>";
@@ -150,19 +171,6 @@ function showList() {
 
     xmlhttp.open("GET", "/_profiler/_inmemorylist/index", true);
     xmlhttp.send();
-}
-
-// Decrement Ttl
-function decrTtl(ttl, element) {
-    if(ttl > 0){
-        setInterval(function () {
-            element.innerHTML = ttl--;
-
-            if(ttl <= 0){
-                showList();
-            }
-        }, 1000);
-    }
 }
 
 showList();
