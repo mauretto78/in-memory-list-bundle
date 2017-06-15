@@ -27,13 +27,13 @@ class Cache
      */
     public function __construct(array $config = [])
     {
-        $this->_setClient($config);
+        $this->setClient($config);
     }
 
     /**
      * @param $config
      */
-    private function _setClient($config)
+    private function setClient($config)
     {
         $this->client = new Client($config['driver'], $config['parameters']);
     }
