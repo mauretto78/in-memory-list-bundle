@@ -10,7 +10,6 @@
 
 namespace InMemoryList\Bundle\Controller;
 
-use InMemoryList\Bundle\InMemoryListBundle;
 use InMemoryList\Bundle\Service\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -11,7 +11,6 @@
 namespace InMemoryList\Bundle\Service;
 
 use InMemoryList\Application\Client;
-use Symfony\Component\Stopwatch\Stopwatch;
 
 class Cache
 {
