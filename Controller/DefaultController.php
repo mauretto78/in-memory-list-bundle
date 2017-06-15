@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of the InMemoryList Bundle package.
+ *
+ * (c) Mauro Cassani<https://github.com/mauretto78>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace InMemoryList\Bundle\Controller;
 
@@ -60,7 +68,7 @@ class DefaultController extends Controller
         $cache->getClient()->delete($uuid);
 
         return $this->json(
-            'Delete list '.$uuid.' from cache',
+            'Deleted list from cache',
             204
         );
     }
