@@ -146,7 +146,7 @@ function showList() {
                         response += "<td class='font-normal'>"+item["size"]+"</td>";
                         response += "<td class='font-normal'>"+item["chunks"]+"</td>";
                         response += "<td class='font-normal'>"+item["chunk-size"]+"</td>";
-                        response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+item["uuid"]+"'>Delete</a></td>";
+                        response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+item["uuid"]+"'><i class='fa fa-trash-o'></i> Delete</a></td>";
                         response += "</tr>";
                     });
 
