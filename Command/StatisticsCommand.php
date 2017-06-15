@@ -10,7 +10,6 @@
 
 namespace InMemoryList\Bundle\Command;
 
-use InMemoryList\Application\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;

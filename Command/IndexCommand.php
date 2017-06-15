@@ -10,7 +10,6 @@
 
 namespace InMemoryList\Bundle\Command;
 
-use InMemoryList\Application\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,7 +35,7 @@ class IndexCommand extends ContainerAwareCommand
             $cache = $this->getContainer()->get('in_memory_list');
             $index = $cache->getClient()->getIndex(null, true);
 
-            if ($index and count($index)) {
+            if ($index && count($index)) {
                 ksort($index);
                 $table = new Table($output);
                 $table->setHeaders(['#', 'List', 'Created on', 'Chunks', 'Chunk size', 'Ttl', 'Items']);
