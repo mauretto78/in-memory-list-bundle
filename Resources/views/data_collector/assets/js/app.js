@@ -63,9 +63,8 @@ document.getElementById("inmemory_list_flush_cache").onclick = function(e) {
 
 // Delete a list
 function deleteList() {
-    var deleteElement = document.getElementsByClassName("inmemory_list_delete_element");
-    for (var i = 0 ; i < deleteElement.length; i++) {
-        var element = deleteElement[i];
+    var deleteElements = document.getElementsByClassName("inmemory_list_delete_element");
+    Array.prototype.forEach.call(deleteElements, function(element) {
         element.addEventListener("click" , function (e) {
             if (confirm("Are you sure you want delete this list?")) {
                 var uuid = this.getAttribute("data-id");
@@ -85,7 +84,7 @@ function deleteList() {
 
             e.preventDefault();
         });
-    }
+    });
 }
 
 // Decrement Ttl
@@ -93,6 +92,10 @@ function decrTtl(ttl, element) {
     var refreshIntervalId = setInterval(function () {
         ttl = ttl - 1;
         element.innerHTML = ttl;
+
+        if(ttl<=10){
+            element.className += " danger";
+        }
 
         if(ttl === 0){
             removeElementById(element.parentElement.getAttribute("id"));
@@ -104,13 +107,11 @@ function decrTtl(ttl, element) {
 
 // Ttl countdown
 function ttlCountDown() {
-    var ttlElement = document.getElementsByClassName("ttl");
-    for (var i = 0 ; i < ttlElement.length; i++) {
-        var element = ttlElement[i],
-            ttl = element.getAttribute("data-ttl");
-
+    var ttlElements = document.getElementsByClassName("ttl");
+    Array.prototype.forEach.call(ttlElements, function(element) {
+        var ttl = element.getAttribute("data-ttl");
         decrTtl(ttl, element);
-    }
+    });
 }
 
 // Display the list
@@ -136,22 +137,18 @@ function showList() {
                     response += "</tr>";
                     response += "</thead>";
 
-                    for (var item in list) {
-                        if ({}.hasOwnProperty.call(list, item)) {
-                            var listItem = list[item];
-
-                            response += "<tr id='"+listItem["uuid"]+"'>";
-                            response += "<th class='font-normal'>"+listItem["uuid"]+"</th>";
-                            response += "<td class='font-normal'>"+listItem["created_on"]+"</td>";
-                            response += "<td class='font-normal'>"+listItem["expires_on"]+"</td>";
-                            response += "<td class='font-normal ttl' data-ttl='"+listItem["ttl"]+"'>"+listItem["ttl"]+"</td>";
-                            response += "<td class='font-normal'>"+listItem["size"]+"</td>";
-                            response += "<td class='font-normal'>"+listItem["chunks"]+"</td>";
-                            response += "<td class='font-normal'>"+listItem["chunk-size"]+"</td>";
-                            response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+listItem["uuid"]+"'>Delete</a></td>";
-                            response += "</tr>";
-                        }
-                    }
+                    Object.values(list).forEach(function(item) {
+                        response += "<tr id='"+item["uuid"]+"'>";
+                        response += "<th class='font-normal'>"+item["uuid"]+"</th>";
+                        response += "<td class='font-normal'>"+item["created_on"]+"</td>";
+                        response += "<td class='font-normal'>"+item["expires_on"]+"</td>";
+                        response += "<td class='font-normal ttl' data-ttl='"+item["ttl"]+"'>"+item["ttl"]+"</td>";
+                        response += "<td class='font-normal'>"+item["size"]+"</td>";
+                        response += "<td class='font-normal'>"+item["chunks"]+"</td>";
+                        response += "<td class='font-normal'>"+item["chunk-size"]+"</td>";
+                        response += "<td class='font-normal'><a href='#' class='inmemory_list_delete_element' data-id='"+item["uuid"]+"'>Delete</a></td>";
+                        response += "</tr>";
+                    });
 
                     response += "</table>";
                 } else {
