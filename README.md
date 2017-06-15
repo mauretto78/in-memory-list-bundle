@@ -1,5 +1,6 @@
 # In-Memory List Bundle #
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6ef9eec4-89f3-40d6-a9f6-c0b192576b8c/mini.png)](https://insight.sensiolabs.com/projects/6ef9eec4-89f3-40d6-a9f6-c0b192576b8c)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0076ba5bfafe4cee87f07b08acbd0099)](https://www.codacy.com/app/mauretto78/in-memory-list-bundle?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mauretto78/in-memory-list-bundle&amp;utm_campaign=Badge_Grade)
 [![license](https://img.shields.io/github/license/mauretto78/in-memory-list-bundle.svg)]()
 [![Packagist](https://img.shields.io/packagist/v/mauretto78/in-memory-list-bundle.svg)]()
