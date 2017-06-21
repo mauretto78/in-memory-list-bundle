@@ -25,7 +25,7 @@ class DefaultController extends Controller
 
         /** @var Cache $cache */
         $cache = $this->container->get('in_memory_list');
-        foreach ($cache->getClient()->getIndex(null, true) as $key => $item) {
+        foreach ($cache->getClient()->getIndex() as $key => $item) {
             $data = unserialize($item);
 
             $expire_date = $data['created_on']->add(new \DateInterval('PT'.$data['ttl'].'S'));

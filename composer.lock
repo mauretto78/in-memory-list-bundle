@@ -461,16 +461,16 @@
         },
         {
             "name": "mauretto78/in-memory-list",
-            "version": "v1.4.13",
+            "version": "v1.4.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mauretto78/in-memory-list.git",
-                "reference": "4bec44643a5cb41b9919cf561fad33ccbb41ddeb"
+                "reference": "dfd3a156a449098a524ad4eebb6fb930205bee0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mauretto78/in-memory-list/zipball/4bec44643a5cb41b9919cf561fad33ccbb41ddeb",
-                "reference": "4bec44643a5cb41b9919cf561fad33ccbb41ddeb",
+                "url": "https://api.github.com/repos/mauretto78/in-memory-list/zipball/dfd3a156a449098a524ad4eebb6fb930205bee0c",
+                "reference": "dfd3a156a449098a524ad4eebb6fb930205bee0c",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +517,7 @@
                 "memcached",
                 "redis"
             ],
-            "time": "2017-06-21T09:13:12+00:00"
+            "time": "2017-06-21T13:14:59+00:00"
         },
         {
             "name": "paragonie/random_compat",
