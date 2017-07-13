@@ -25,12 +25,12 @@ class DefaultController extends Controller
 
         /** @var Cache $cache */
         $cache = $this->container->get('in_memory_list');
-        foreach ($cache->getClient()->getIndex() as $key => $item) {
+        foreach ($cache->getClient()->getRepository()->getIndex() as $key => $item) {
             $data = unserialize($item);
 
             $expire_date = $data['created_on']->add(new \DateInterval('PT'.$data['ttl'].'S'));
 
-            $data['ttl'] = $cache->getClient()->getTtl($data['uuid']);
+            $data['ttl'] = $cache->getClient()->getRepository()->getTtl($data['uuid']);
             $data['created_on'] = $data['created_on']->format("F jS \\a\\t g:ia");
             $data['expires_on'] = $expire_date->format("F jS \\a\\t g:ia");
             $items[$key] = $data;
@@ -49,7 +49,7 @@ class DefaultController extends Controller
     {
         /** @var Cache $cache */
         $cache = $this->container->get('in_memory_list');
-        $cache->getClient()->flush();
+        $cache->getClient()->getRepository()->flush();
 
         return $this->json(
             'Flushed cache',
@@ -64,7 +64,7 @@ class DefaultController extends Controller
     {
         /** @var Cache $cache */
         $cache = $this->container->get('in_memory_list');
-        $cache->getClient()->delete($uuid);
+        $cache->getClient()->getRepository()->delete($uuid);
 
         return $this->json(
             'Deleted list from cache',

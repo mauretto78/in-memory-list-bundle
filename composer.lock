@@ -461,16 +461,16 @@
         },
         {
             "name": "mauretto78/in-memory-list",
-            "version": "v1.4.14",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mauretto78/in-memory-list.git",
-                "reference": "dfd3a156a449098a524ad4eebb6fb930205bee0c"
+                "reference": "eebfdd62d6b97e5305621b41c6f1f0bcc4acdeb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mauretto78/in-memory-list/zipball/dfd3a156a449098a524ad4eebb6fb930205bee0c",
-                "reference": "dfd3a156a449098a524ad4eebb6fb930205bee0c",
+                "url": "https://api.github.com/repos/mauretto78/in-memory-list/zipball/eebfdd62d6b97e5305621b41c6f1f0bcc4acdeb3",
+                "reference": "eebfdd62d6b97e5305621b41c6f1f0bcc4acdeb3",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +517,7 @@
                 "memcached",
                 "redis"
             ],
-            "time": "2017-06-21T13:14:59+00:00"
+            "time": "2017-07-13T12:47:09+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1224,16 +1224,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f"
+                "reference": "82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/82bd7c039214b34bb5d12c04f996f05f6581c49f",
-                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c",
+                "reference": "82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1342,6 @@
                     "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
                     "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
                     "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/",
-                    "Symfony\\Bridge\\Swiftmailer\\": "src/Symfony/Bridge/Swiftmailer/",
                     "Symfony\\Bridge\\Twig\\": "src/Symfony/Bridge/Twig/",
                     "Symfony\\Bundle\\": "src/Symfony/Bundle/",
                     "Symfony\\Component\\": "src/Symfony/Component/"
@@ -1373,7 +1372,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-06-06T04:00:14+00:00"
+            "time": "2017-07-05T13:28:34+00:00"
         },
         {
             "name": "twig/twig",

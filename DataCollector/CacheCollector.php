@@ -40,7 +40,7 @@ class CacheCollector extends DataCollector
 
         /** @var Client $client */
         $cacheClient = $this->cache->getClient();
-        foreach ($cacheClient->getIndex(null, true) as $item) {
+        foreach ($cacheClient->getRepository()->getIndex() as $item) {
             $data = unserialize($item);
             $size = $size + $data['size'];
         }
