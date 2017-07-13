@@ -33,7 +33,7 @@ class IndexCommand extends ContainerAwareCommand
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
-            $index = $cache->getClient()->getIndex(null, true);
+            $index = $cache->getClient()->getRepository()->getIndex(null, true);
 
             if ($index && count($index)) {
                 ksort($index);
@@ -53,9 +53,9 @@ class IndexCommand extends ContainerAwareCommand
                             $counter+1,
                             '<fg=yellow>'.$listUuid.'</>',
                             $created_on->format('Y-m-d H:i:s'),
-                            $cache->getClient()->getNumberOfChunks($listUuid),
-                            $cache->getClient()->getChunkSize($listUuid),
-                            $cache->getClient()->getTtl($listUuid),
+                            $cache->getClient()->getRepository()->getNumberOfChunks($listUuid),
+                            $cache->getClient()->getRepository()->getChunkSize($listUuid),
+                            $cache->getClient()->getRepository()->getTtl($listUuid),
                             $item['size'],
                         ]
                     );

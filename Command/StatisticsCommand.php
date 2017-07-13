@@ -33,7 +33,7 @@ class StatisticsCommand extends ContainerAwareCommand
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
-            $statistics = $cache->getClient()->getStatistics();
+            $statistics = $cache->getClient()->getRepository()->getStatistics();
 
             $table = new Table($output);
             $table->setHeaders(['Key', 'Value']);

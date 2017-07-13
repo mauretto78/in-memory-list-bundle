@@ -48,7 +48,7 @@ class CacheCollector extends DataCollector
         $this->data = [
             'bundleVersion' => InMemoryListBundle::VERSION,
             'driverUsed' => $cacheClient->getDriver(),
-            'stats' => $cacheClient->getStatistics(),
+            'stats' => $cacheClient->getRepository()->getStatistics(),
             'size' => $size,
         ];
     }

@@ -33,7 +33,7 @@ class FlushCommand extends ContainerAwareCommand
 
         try {
             $cache = $this->getContainer()->get('in_memory_list');
-            $cache->getClient()->flush();
+            $cache->getClient()->getRepository()->flush();
 
             $symfonyOutput->success('[IML] Cache was successful flushed.');
         } catch (\Exception $e) {
