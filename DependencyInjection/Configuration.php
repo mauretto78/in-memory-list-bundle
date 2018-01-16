@@ -26,20 +26,17 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('in_memory_list');
         $rootNode
             ->children()
-                ->enumNode('driver')
-                ->values([
-                    'redis',
-                    'memcached',
-                    'apcu'
-                ])
-                ->defaultValue('redis')
-                ->isRequired()
+                    ->scalarNode('driver')
+                    ->defaultValue('redis')
+                    ->isRequired()
                 ->end()
             ->end()
             ->children()
                 ->arrayNode('parameters')
                     ->isRequired()
-                    ->prototype('variable')
+                    ->requiresAtLeastOneElement()
+                    ->useAttributeAsKey(true)
+                    ->scalarPrototype()->end()
                 ->end()
             ->end()
         ;
