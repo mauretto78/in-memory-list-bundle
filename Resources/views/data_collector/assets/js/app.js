@@ -44,22 +44,26 @@ function showNoDataIfTableIsEmpty() {
 var xmlhttp = new XMLHttpRequest();
 
 // Flush entire cache
-document.getElementById("inmemory_list_flush_cache").onclick = function(e) {
-    if (confirm("Are you sure you want purge the entire cache?")) {
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState === XMLHttpRequest.DONE ) {
-                if (xmlhttp.status === 204) {
-                    showNoData();
+var flushCacheElement = document.getElementById("inmemory_list_flush_cache");
+
+if(flushCacheElement){
+    flushCacheElement.onclick = function(e) {
+        if (confirm("Are you sure you want purge the entire cache?")) {
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState === XMLHttpRequest.DONE ) {
+                    if (xmlhttp.status === 204) {
+                        showNoData();
+                    }
                 }
-            }
-        };
+            };
 
-        xmlhttp.open("GET", "/_profiler/_inmemorylist/flush", true);
-        xmlhttp.send();
-    }
+            xmlhttp.open("GET", "/app_dev.php/_profiler/_inmemorylist/flush", true);
+            xmlhttp.send();
+        }
 
-    e.preventDefault();
-};
+        e.preventDefault();
+    };
+}
 
 // Delete a list
 function deleteList() {
@@ -78,7 +82,7 @@ function deleteList() {
                     }
                 };
 
-                xmlhttp.open("GET", "/_profiler/_inmemorylist/delete/" + uuid, true);
+                xmlhttp.open("GET", "/app_dev.php/_profiler/_inmemorylist/delete/" + uuid, true);
                 xmlhttp.send();
             }
 
@@ -110,7 +114,12 @@ function ttlCountDown() {
     var ttlElements = document.getElementsByClassName("ttl");
     Array.prototype.forEach.call(ttlElements, function(element) {
         var ttl = element.getAttribute("data-ttl");
-        decrTtl(ttl, element);
+
+        if(ttl !== '-1'){
+            decrTtl(ttl, element);
+        } else if(ttl === '-1'){
+            element.innerHTML = '--';
+        }
     });
 }
 
@@ -121,6 +130,8 @@ function showList() {
             if (xmlhttp.status === 200) {
                 var list = JSON.parse(xmlhttp.responseText),
                     response = "";
+
+                console.log(Object.size(list));
 
                 if(Object.size(list)>0) {
                     response += "<table id='inmemory_list_table'>";
@@ -167,7 +178,7 @@ function showList() {
         }
     };
 
-    xmlhttp.open("GET", "/_profiler/_inmemorylist/index", true);
+    xmlhttp.open("GET", "/app_dev.php/_profiler/_inmemorylist/index", true);
     xmlhttp.send();
 }
 
