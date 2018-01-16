@@ -26,14 +26,12 @@ class DefaultController extends Controller
         /** @var Cache $cache */
         $cache = $this->container->get('in_memory_list');
         foreach ($cache->getClient()->getRepository()->getIndex() as $key => $item) {
-            $data = unserialize($item);
+            $expire_date = $item['created_on']->add(new \DateInterval('PT'.$item['ttl'].'S'));
 
-            $expire_date = $data['created_on']->add(new \DateInterval('PT'.$data['ttl'].'S'));
-
-            $data['ttl'] = $cache->getClient()->getRepository()->getTtl($data['uuid']);
-            $data['created_on'] = $data['created_on']->format("F jS \\a\\t g:ia");
-            $data['expires_on'] = $expire_date->format("F jS \\a\\t g:ia");
-            $items[$key] = $data;
+            $item['ttl'] = $cache->getClient()->getRepository()->getTtl($item['uuid']);
+            $item['created_on'] = $item['created_on']->format("F jS \\a\\t g:ia");
+            $item['expires_on'] = $expire_date->format("F jS \\a\\t g:ia");
+            $items[$key] = $item;
         }
 
         return $this->json(

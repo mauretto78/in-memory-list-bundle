@@ -85,15 +85,13 @@ public function indexAction(Request $request)
 Now you can loop data in your twig files:
 
 ```twig
-{% for list in cachedList %}
-    <li>{{ item(list).userId }}</li>
-    <li>{{ item(list).id }}</li>
-    <li>{{ item(list).title }}</li>
-    <li>{{ item(list).body }}</li>
+{% for item in cachedList %}
+    <li>{{ item.userId }}</li>
+    <li>{{ item.id }}</li>
+    <li>{{ item.title }}</li>
+    <li>{{ item.body }}</li>
 {% endfor %}
 ```
-
-you can use `item` function to get the unserialized data.
 
 ## Symfony Profiler ##
 

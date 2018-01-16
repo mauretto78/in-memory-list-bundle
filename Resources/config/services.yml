@@ -1,13 +1,8 @@
 parameters:
     in_memory_list.class: InMemoryList\Bundle\Service\Cache
-    in_memory_list.twig_unserialize.class: InMemoryList\Bundle\Twig\UnserializeExtension
 
 services:
     in_memory_list:
         class: "%in_memory_list.class%"
         arguments:
             - "%in_memory_list%"
-    twig.extension.unserialize:
-        class: "%in_memory_list.twig_unserialize.class%"
-        tags:
-         - { name: twig.extension }

@@ -42,7 +42,6 @@ class IndexCommand extends ContainerAwareCommand
 
                 $counter = 0;
                 foreach ($index as $item) {
-                    $item = unserialize($item);
                     $listUuid = $item['uuid'];
 
                     /** @var \DateTimeImmutable $created_on */
